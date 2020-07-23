@@ -29,6 +29,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -126,6 +127,19 @@ public class ConvertOpenApiDocsMojo extends AbstractMojo {
     public List<String> transformOpenApi301ToSwagger20(List<String> openApi, String expectedSpec) {
         //First line defines new specification
         openApi.set(0, expectedSpec);
+
+        //Edge case for description field, which is valid for info but must be removed in servers
+        boolean isServers = false;
+        for(Iterator<String> iterator = openApi.iterator(); iterator.hasNext();) {
+            String ln = iterator.next();
+            if(ln.startsWith("servers:")) {
+                isServers = true;
+            }
+            if(isServers && ln.startsWith("  description:")) {
+                iterator.remove();
+                break;
+            }
+        }
 
         //Remove Swagger 2.0 invalid fields
         openApi.removeIf(ln -> ln.startsWith("servers:") || ln.startsWith("- url:") || ln.startsWith("        schema:") ||
