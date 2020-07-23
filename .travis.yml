@@ -1,0 +1,6 @@
+language: java
+sudo: true
+jdk: oraclejdk11
+
+install:
+  - mvn clean install
