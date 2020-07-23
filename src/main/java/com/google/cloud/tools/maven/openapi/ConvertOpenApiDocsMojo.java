@@ -128,10 +128,9 @@ public class ConvertOpenApiDocsMojo extends AbstractMojo {
         openApi.set(0, expectedSpec);
 
         //Remove Swagger 2.0 invalid fields
-        openApi.removeIf(ln -> ln.startsWith("servers:") || ln.startsWith("- url:") || ln.startsWith("  description:") ||
-                ln.startsWith("        schema:") || ln.startsWith("          format:") || ln.startsWith("          content:") ||
-                ln.startsWith("            '*/*':") || ln.startsWith("              schema:") ||
-                ln.startsWith("                type:") || ln.startsWith("components:"));
+        openApi.removeIf(ln -> ln.startsWith("servers:") || ln.startsWith("- url:") || ln.startsWith("        schema:") ||
+                ln.startsWith("          format:") || ln.startsWith("          content:") || ln.startsWith("            '*/*':") ||
+                ln.startsWith("              schema:") || ln.startsWith("                type:") || ln.startsWith("components:"));
 
         //Logically interpolate modified fields
         for(int i = 0; i < openApi.size(); i++) {

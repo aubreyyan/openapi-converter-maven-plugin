@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/aubrey-y/openapi-converter-maven-plugin.svg?branch=master)](https://travis-ci.com/aubrey-y/openapi-converter-maven-plugin)
+
 # OpenApi Converter Maven Plugin
 This maven plugin converts between different OpenApi specification types.
 
@@ -43,7 +45,7 @@ Furthermore, for usage with [springdoc-openapi-maven-plugin](https://github.com/
 please include this plugin definition sequentially after springdoc's plugin and, because they both occur in the same
 LifecyclePhase, will automatically generate your `openapi.yaml` with your desired specification.
 
-Furthermore, you will have to add `convertOpenApiDocs` as an executiion goal to the plugin definition, in line with
+You will have to add `convertOpenApiDocs` as an execution goal to the plugin definition, in line with
 springdoc's.
 
 Example:
